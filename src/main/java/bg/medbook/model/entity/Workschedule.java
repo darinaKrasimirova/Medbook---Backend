@@ -1,5 +1,6 @@
 package bg.medbook.model.entity;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import bg.medbook.model.enumeration.Weekday;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,14 +24,10 @@ import lombok.ToString;
 @Entity
 @Table(name = "workschedules")
 public class Workschedule {
-
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "workplace_id")
@@ -39,7 +35,7 @@ public class Workschedule {
 
     @Column(name = "weekday")
     @Enumerated(EnumType.ORDINAL)
-    private Weekday weekday;
+    private DayOfWeek weekday;
 
     @Column(name = "start_time")
     private LocalTime startTime;
